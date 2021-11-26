@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div style="text-align: center">
+      <a href="{% url 'courseapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
+        Create course
+      </a>
+    </div>
+
+
+  {% if course_list %}
+    <div class="container">
+       {% for course in course_list %}
+      <a href="{% url 'courseapp:detail' pk=course.pk %}">
+        <!--        프로젝트 게시물 card include-->
+        {% include 'snippets/card.html' with course=course %}
+      </a>
+      <hr>
+      {% endfor %}
+    </div>
+
+  {% else %}
+  <div class="text-center">
+    <h1>No course YET!</h1>
+  </div>
+  {% endif %}
+
+{% endblock %}
