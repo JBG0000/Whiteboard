@@ -2,23 +2,51 @@
 {% load bootstrap4 %}
 
 {% block content %}
+
 <div>
     <div style="text-align:center; max-width:500px; margin: 4rem auto">
+        <img src="{{target_course.image.url}}" alt=""  class="container">
 
-       <h1>
-           {{target_course.title}}
-       </h1>
+       <h2>
+           {{ target_course.title }}
+       </h2>
 
         <h4>
-            {{ target_course.writer.profile.user }}
+            {{ target_course.writer.profile.name }}
         </h4>
 
-        <hr>
-        <h5>
-            {{target_course.content}}
-        </h5>
+        <div class="text-center mb-5">
 
-        <img src="{{target_course.image.url}}" alt=""  class="container">
+            {% if user.is_authenticated and user.profile.get_personnel_display == '학부생' %}
+                {% if not join %}
+                <a href="{% url 'joinapp:join' %}?course_pk={{ target_course.pk }}"
+                    class="btn btn-primary rounded-pill px-4">
+                    수강
+                </a>
+                {% else %}
+                <a href="{% url 'joinapp:join' %}?course_pk={{ target_course.pk }}"
+                    class="btn btn-dark rounded-pill px-4">
+                    수강취소
+                </a>
+                {% endif %}
+            {% endif %}
+
+        </div>
+
+    <hr>
+
+        <div style="text-align: center; font-size: 1.2rem; ">
+                 <a href="#" style="margin: 0 3rem;">
+                    <span>공지사항</span>
+                </a>
+                <a href="#" style="margin: 0 3rem;">
+                    <span>자료</span>
+                </a>
+                <a href="#" style="margin: 0 3rem;">
+                    <span>게시판</span>
+                </a>
+        </div>
+
 
 
         <hr>

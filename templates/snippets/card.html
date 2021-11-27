@@ -1,0 +1,42 @@
+
+<style>
+
+    .container {
+      padding: 0;
+      margin: 0, auto;
+    }
+
+     .container a {
+      width: 45%;
+      max-width: 250px;
+    }
+
+    .container div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .container img {
+      width: 20%;
+    }
+
+</style>
+
+
+<div class="container">
+
+    <img src="{{ course.image.url }}" alt="">
+
+</div>
+<div>
+    <h4>
+        {{ course.title }}
+    </h4>
+</div>
+<div>
+    <h6>
+        {{ course.writer.profile.name | safe }}
+    </h6>
+</div>

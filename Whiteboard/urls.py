@@ -23,13 +23,12 @@ from django.urls import path, include
 from courseapp.views import CourseListView
 
 urlpatterns = [
-    path('', LoginView.as_view(template_name='accountapp/login.html'), name='home'),
+    path('', CourseListView.as_view(), name='home'),
 
     path('admin/', admin.site.urls),
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')),
     path('course/', include('courseapp.urls')),
+    path('joins/', include('joinapp.urls')),
 
-]
-#
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

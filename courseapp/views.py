@@ -10,6 +10,7 @@ from django.views.generic.list import MultipleObjectMixin
 from courseapp.decorators import course_ownership_required
 from courseapp.forms import CourseCreationForm
 from courseapp.models import Course
+from joinapp.models import Join
 
 
 @method_decorator(login_required, 'get')
@@ -37,6 +38,15 @@ class CourseDetailView(DetailView):
     def get_context_data(self, **kwargs):
         course = self.object
         user = self.request.user
+        join_list = Join.objects.all()
+
+        # join, team이 보이는 조건
+        if user.is_authenticated:
+            join = Join.objects.filter(user=user, course=course)
+        else:
+            join = None
+
+        return super(CourseDetailView, self).get_context_data(join_list=join_list, join=join, **kwargs)
 
 
 @method_decorator(course_ownership_required, 'get')
@@ -60,7 +70,18 @@ class CourseDeleteView(DeleteView):
     template_name = 'courseapp/delete.html'
 
 @method_decorator(login_required, 'get')
-class CourseListView(ListView):
+class CourseListView(ListView, MultipleObjectMixin):
     model = Course
     context_object_name = 'course_list'
     template_name = 'courseapp/list.html'
+
+    def get_context_data(self, **kwargs):
+        join_list = Join.objects.all()
+        return super(CourseListView, self).get_context_data(join_list=join_list, **kwargs)
+
+
+@method_decorator(login_required, 'get')
+class CourseSignupView(ListView):
+    model = Course
+    context_object_name = 'course_list'
+    template_name = 'courseapp/signup.html'

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'accountapp',
     'courseapp',
     'profileapp',
+    'joinapp',
 ]
 
 MIDDLEWARE = [
