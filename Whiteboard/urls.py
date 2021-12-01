@@ -23,12 +23,14 @@ from django.urls import path, include
 from courseapp.views import CourseListView
 
 urlpatterns = [
-    path('', CourseListView.as_view(), name='home'),
+                  path('', CourseListView.as_view(), name='home'),
 
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accountapp.urls')),
-    path('profiles/', include('profileapp.urls')),
-    path('course/', include('courseapp.urls')),
-    path('joins/', include('joinapp.urls')),
+                  path('admin/', admin.site.urls),
+                  path('accounts/', include('accountapp.urls')),
+                  path('profiles/', include('profileapp.urls')),
+                  path('course/', include('courseapp.urls')),
+                  path('joins/', include('joinapp.urls')),
+                  path('boards/', include('boardapp.urls')),
+                  path('comments/', include('commentapp.urls')),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

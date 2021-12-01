@@ -37,30 +37,20 @@
 
         <div style="text-align: center; font-size: 1.2rem; ">
 
-            
-
 {#            여기서 항목 누르면 작성 글 보이도록#}
 
-{#                 <a href="#" style="margin: 0 3rem;">#}
-{#                    <span>공지사항</span>#}
-{#                </a>#}
-
-                 <a href="{% url 'boardapp:notice'%}?course_pk={{ course.pk }}" style="margin: 0 3rem;">
+                 <a href="#" style="margin: 0 3rem;">
                     <span>공지사항</span>
                 </a>
-                <a href="{% url 'boardapp:data' %}?course_pk={{ course.pk }}" style="margin: 0 3rem;">
-                    <span>강의자료</span>
-                </a>
-                <a href="{% url 'boardapp:board' %}?course_pk={{ course.pk }}" style="margin: 0 3rem;">
-                    <span>게시판</span>
-                </a>
+
         </div>
 
 
 
         <hr>
-        <a href="{% url 'courseapp:list' %}">
-            <p>다른 수업 보기</p>
+{#        <a href="{% url 'courseapp:detail' pk=course.pk %}">#}
+        <a href="{% url 'courseapp:detail' pk=1 %}">
+            <p>돌아가기</p>
         </a>
     </div>
 </div>
