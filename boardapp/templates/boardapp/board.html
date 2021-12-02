@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <div style="text-align:center; max-width:500px; margin: 4rem auto">
+        <h2>토론게시판</h2>
+        <br>
+
+        <a href={% url 'boardapp:create' %}?course_pk={{ target_course.pk }}>
+            <button class="btn btn-dark rounded-pill px-4">토론 작성</button>
+        </a>
+        <hr>
+    </div>
+    <script language="JavaScript">
+        count = 0;
+    </script>
+    <div style="max-width:500px; margin: 4rem auto">
+        {% for post in post_list %}
+            <h5 style="display:inline-block;width: 14%; text-align: center;">
+                <script language="JavaScript">
+                    count += 1;
+                    document.write(count);
+                </script>
+            </h5>
+            <h4 style="display:inline-block; text-align: center; width: 69%;"><a
+                    href={% url 'boardapp:detail' pk=post.pk %}>{{ post.title }}</a></h4>
+            <a style="display:inline-block; text-align: center; width: 14%;"
+               href={% url 'accountapp:detail' pk=post.writer.pk %}>{{ post.writer }}</a>
+            {#            <a href={% url 'boardapp:detail' pk=post.created_at.pk %}>{{ post.created_at }}</a>#}
+            <hr>
+        {% endfor %}
+        <div style="max-width:500px; text-align: center">
+            {% include 'page_yellow.html' %}
+        </div>
+    </div>
+{% endblock %}

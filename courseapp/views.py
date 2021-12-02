@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+from django.shortcuts import render
+from django.template.context_processors import request
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
@@ -46,7 +48,7 @@ class CourseDetailView(DetailView):
         else:
             join = None
 
-        return super(CourseDetailView, self).get_context_data(join_list=join_list, join=join, **kwargs)
+        return super(CourseDetailView, self).get_context_data(join_list=join_list, join=join, course=course, **kwargs)
 
 
 @method_decorator(course_ownership_required, 'get')
@@ -69,6 +71,11 @@ class CourseDeleteView(DeleteView):
     success_url = reverse_lazy('courseapp:list')
     template_name = 'courseapp/delete.html'
 
+
+# @method_decorator(course_ownership_required, 'get')
+# @method_decorator(course_ownership_required, 'post')
+
+
 @method_decorator(login_required, 'get')
 class CourseListView(ListView, MultipleObjectMixin):
     model = Course
@@ -85,3 +92,39 @@ class CourseSignupView(ListView):
     model = Course
     context_object_name = 'course_list'
     template_name = 'courseapp/signup.html'
+
+
+#
+# def Notice(request):
+#     return render(request, 'courseapp/notice.html')
+# class CourseNoticeView(DetailView):
+#     model = Course
+#     context_object_name = 'target_course'
+#     template_name = 'courseapp/notice.html'
+#
+#     # def get_success_url(self):
+#     #     return reverse('courseapp:notice', kwargs={'pk': self.object.pk})
+#     def get_context_data(self, **kwargs):
+#         course = self.object
+#         user = self.request.user
+#         join_list = Join.objects.all()
+#
+#         # join, team이 보이는 조건
+#         if user.is_authenticated:
+#             join = Join.objects.filter(user=user, course=course)
+#         else:
+#             join = None
+#
+#         return super(CourseNoticeView, self).get_context_data(join_list=join_list, join=join, **kwargs)
+
+    # def get_success_url(self):
+    #   return render(request, 'courseapp:notice')
+    #
+    # def get_success_url(self):
+    #     return reverse('courseapp:notice', kwargs={'pk': self.object.pk})
+#
+# class CourseNoticeView(DetailView):
+#     model = Course
+#     context_object_name = 'target_notice'
+#     template_name = 'courseapp/notice.html'
+

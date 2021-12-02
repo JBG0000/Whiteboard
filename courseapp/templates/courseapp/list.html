@@ -1,3 +1,74 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{##}
+{#{% block content %}#}
+{##}
+{#    <style>#}
+{##}
+{#        .container div {#}
+{#            width: 250px;#}
+{#            background-color: antiquewhite;#}
+{#            display: flex;#}
+{#            justify-content: center;#}
+{#            align-items: center;#}
+{#            border-radius: 1rem;#}
+{#        }#}
+{##}
+{#        .container img {#}
+{#            width: 100%;#}
+{#        }#}
+{##}
+{##}
+{#    </style>#}
+{##}
+{#    {% if user.profile.get_personnel_display == '교수' %}#}
+{#        <div style="text-align: center">#}
+{#            <a href="{% url 'courseapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">#}
+{#                Create course#}
+{#            </a>#}
+{#        </div>#}
+{#        <div class="container">#}
+{#            {% if course_list %}#}
+                {#                <div class="container">#}
+{#                <div>#}
+{#                    {% for course in course_list %}#}
+{#                        {% if course.writer == user %}#}
+{#                            <a href="{% url 'courseapp:detail' pk=course.pk %}">#}
+{#                                <!--        프로젝트 게시물 card include-->#}
+{#                                {% include 'snippets/card.html' with course=course %}#}
+{#                            </a>#}
+{#                            <hr>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#        <div class="container">#}
+{#            {% elif user.profile.get_personnel_display == '학부생' %}#}
+{#            <div style="text-align: center">#}
+{#                <a href="{% url 'courseapp:signup' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">#}
+{#                    Signup course#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{#            {% if join_list %}#}
+                {#                <div class="container">#}
+{#                <div>#}
+{#                    {% for join in join_list %}#}
+{#                        {% if user == join.user %}#}
+{#                            <a href="{% url 'courseapp:detail' pk=join.course.pk %}">#}
+{#                                {% include 'snippets/card.html' with course=join.course %}#}
+{#                            </a>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        </div>#}
+{##}
+{#    {% endif %}#}
+{#    <script src="{% static 'js/magicgrid.js' %}"></script>#}
+{#{% endblock %}#}
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -44,4 +115,5 @@
             </div>
          {% endif %}
     {% endif %}
+     <script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock %}

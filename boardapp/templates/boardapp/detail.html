@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {#    {% if target_post.type == 'notice' %}#}
+    {#        <div class="elements-section-headline-wrap yellow">#}
+    {#    {% elif target_post.type == 'kquestion' %}#}
+    {#        <div class="elements-section-headline-wrap green">#}
+    {#    {% elif target_post.type == 'dsum' %}#}
+    {#        <div class="elements-section-headline-wrap blue">#}
+    {#    {% elif target_post.type == 'tutoring' %}#}
+    {#        <div class="elements-section-headline-wrap red">#}
+    {#    {% elif target_post.type == 'contest' %}#}
+    {#        <div class="elements-section-headline-wrap puple">#}
+    {#    {% else %}#}
+    {#        <div class="elements-section-headline-wrap">#}
+    {#    {% endif %}#}
+    {#    <div id="Hero" class="section detail">#}
+    <div style="text-align:center; max-width:500px; margin: 2rem auto">
+        <h1 class="heading-2">{{ target_post.title }}</h1>
+        <div class="div-block-8">
+            <div class="text-block-18">글쓴이 :{{ target_post.writer }}
+                작성일자 : {{ target_post.created_at }}
+                {#            {% if 'korea.ac.kr' in target_post.writer.email %}#}
+                {#                {% if target_post.writer.first_name or target_post_writer.last_name %}#}
+                {#                    {{ target_post.writer.first_name }}{{ target_post.writer.last_name }}#}
+                {#                {% else %}#}
+                {#                    No Name#}
+                {#                {% endif %}#}
+                {#            {% elif target_post.writer.profile %}#}
+                {#                {{ target_post.writer.profile.nickname }}#}
+                {#            {% elif target_post.writer %}#}
+                {#                {{ target_post.writer }}#}
+
+                {#            {% else %}#}
+                {#                알수없음#}
+                {#            {% endif %}#}
+            </div>
+            <div>
+                {% if target_post.type == 'notice' %}
+                    <span>공지사항</span>
+                {% elif target_post.type == 'data' %}
+                    <span>강의자료</span>
+                {% elif target_post.type == 'board' %}
+                    <span>토론게시판</span>
+                {% else %}
+                    게시판항목에러
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div style="display:block; margin:auto;text-align:center; max-width:500px; height:300px; border: thick double #570808;">
+        <div class="w-layout-grid blog1-grid">
+
+            <div class="paragraph-70">{{ target_post.content | safe }}</div>
+
+            {#            <!--   댓글 쓰기 -->#}
+            {#            {% include 'commentapp/create.html' with board=target_post %}#}
+            {#            <div class="div-block-9"></div>#}
+            {##}
+            {#            <div class="size3-text">댓글 목록<br></div>#}
+            {#            <!--    댓글 리스트 -->#}
+            {#            {% for comment in comment_list %}#}
+            {#                {% include 'commentapp/detail.html' %}#}
+            {#            {% endfor %}#}
+        </div>
+    </div>
+
+
+    {% if target_post.type == 'board' %}
+        <div style="text-align:center; max-width:500px; margin: 2rem auto">
+            <div class="w-layout-grid blog1-grid">
+
+                {#            <div class="paragraph-70">{{ target_post.content | safe }}</div>#}
+
+                <!--   댓글 쓰기 -->
+                {% include 'commentapp/create.html' with board=target_post %}
+                <div class="div-block-9"></div>
+
+                <div class="size3-text" style="margin-top: 1.5rem;">댓글 목록<br></div>
+                <div style="border: solid #570808; border-width:0 0 1px 0 ;"></div>
+                <!--    댓글 리스트 -->
+                {% for comment in comment_list %}
+                    {% include 'commentapp/detail.html' %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+    {% endif %}
+
+    {% if target_post.type == 'notice' %}
+        <a href={% url 'boardapp:notice' %}?course_pk={{ target_post.course.pk }}>
+            <button class="btn btn-info rounded-pill px-4" style="color:white; display: block; margin:auto; margin-top: 1rem;">목록으로
+            </button>
+        </a>
+    {% elif target_post.type == 'data' %}
+        <a href={% url 'boardapp:data' %}?course_pk={{ target_post.course.pk }}>
+            <button class="btn btn-info rounded-pill px-4" style="color:white; display: block; margin:auto; margin-top: 1rem;">목록으로
+            </button>
+        </a>
+    {% elif target_post.type == 'board' %}
+        <a href={% url 'boardapp:board' %}?course_pk={{ target_post.course.pk }}>
+            <button class="btn btn-info rounded-pill px-4" style="color:white; display: block; margin:auto; margin-top: 1rem;">목록으로
+            </button>
+        </a>
+    {% else %}
+        board/detail페이지 에러
+    {% endif %}
+    </div>
+{% endblock %}

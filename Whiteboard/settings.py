@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'courseapp',
     'profileapp',
     'joinapp',
+    'boardapp',
+    'commentapp',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +153,17 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#ckeditor
+CKEDITOR_CONFIGS = {
+  'default': {
+      'toolbar': 'full',
+      'extraPlugins': ','.join(
+          [
+              'codesnippet',
+          ]
+
+      ),
+      'codeSnippet_theme': 'monokai_sublime',
+  },
+}
