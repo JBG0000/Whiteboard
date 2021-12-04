@@ -18,7 +18,7 @@
     <div style="text-align:center; max-width:500px; margin: 2rem auto">
         <h1 class="heading-2">{{ target_post.title }}</h1>
         <div class="div-block-8">
-            <div class="text-block-18">글쓴이 :{{ target_post.writer }}
+            <div class="text-block-18">글쓴이 :{{ target_post.writer.profile.name }}
                 작성일자 : {{ target_post.created_at }}
                 {#            {% if 'korea.ac.kr' in target_post.writer.email %}#}
                 {#                {% if target_post.writer.first_name or target_post_writer.last_name %}#}

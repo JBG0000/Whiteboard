@@ -15,7 +15,7 @@
 {#        {% else %}#}
 {#            알수없음#}
 {#        {% endif %}#}
-        작성자 : {{ comment.writer }}
+        작성자 : {{ comment.writer.profile.name }}
         </div>
         <div class="text-label">{{ comment.created_at }}</div>
     </div>
