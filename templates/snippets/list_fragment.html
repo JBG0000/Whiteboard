@@ -29,7 +29,7 @@
 
   {% if course_list %}
     {% for course in course_list %}
-      <div class="container" style="margin: 2rem auto">
+      <div class="container" style="margin: 2rem auto;">
         <a href="{% url 'courseapp:detail' pk=course.pk %}">
           <img src="{{ course.image.url }}" alt=""> <br>
           {{ course.title }}

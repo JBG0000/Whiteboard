@@ -38,24 +38,32 @@
         </div>
         <div style="height: 3px; background-color: black;"></div>
 
+
+
         {% if not user.is_authenticated %}
-            <li style="height: 50px; line-height: 50px;"><a href="{% url 'accountapp:login' %}?next={{ request.path }}">로그인</a></li>
+            <li style="height: 50px; line-height: 50px;"><a href="{% url 'accountapp:login' %}?next={{ request.path }}">로그인</a>
+            </li>
         {% else %}
+{#            <img style="display: inline-block; width: 50px; height: 50px;"#}
+{#                                                              src="https://pngset.com/images/white-google-alerts-icon-free-white-google-icons-notification-icon-white-stencil-symbol-silhouette-star-symbol-transparent-png-2905773.png"#}
+{#                                                              alt=""> #}
             <li style="height: 50px; line-height: 50px;"><a href="#">안내페이지</a></li>
-            <li style="height: 50px; line-height: 50px;"><a href="{% url 'accountapp:detail' pk=user.pk %}">.{{user.profile.name}}</a></li>
+            <li style="height: 50px; line-height: 50px;"><a
+                    href="{% url 'accountapp:detail' pk=user.pk %}">.{{ user.profile.name }}</a></li>
             <li style="height: 50px; line-height: 50px;"><a href="#">활동 스트림</a></li>
             <li style="height: 50px; line-height: 50px;"><a href="{% url 'courseapp:list' %}">코스</a></li>
 
             {% if user.profile.get_personnel_display == '교수' %}
                 <li style="height: 50px; line-height: 50px;"><a href="{% url 'courseapp:create' %}">강의등록</a></li>
             {% elif user.profile.get_personnel_display == '학부생' %}
-                 <li style="height: 50px; line-height: 50px;"><a href="{% url 'courseapp:signup' %}">수강신청</a></li>
+                <li style="height: 50px; line-height: 50px;"><a href="{% url 'courseapp:signup' %}">수강신청</a></li>
             {% endif %}
 
             <li style="height: 50px; line-height: 50px;"><a href="#">캘린더</a></li>
             <li style="height: 50px; line-height: 50px;"><a href="#">메세지</a></li>
             <li style="height: 50px; line-height: 50px;"><a href="#">성적</a></li>
-            <li style="height: 50px; line-height: 50px;"><a href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a></li>
+            <li style="height: 50px; line-height: 50px;"><a
+                    href="{% url 'accountapp:logout' %}?next={{ request.path }}">로그아웃</a></li>
 
         {% endif %}
     </ul>
