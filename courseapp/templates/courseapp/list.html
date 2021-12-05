@@ -4,14 +4,14 @@
 {% block content %}
 
     {% if user.profile.get_personnel_display == '교수' %}
-      <div style="text-align: center">
+      <div style="margin-top:80px; text-align: center">
         <a href="{% url 'courseapp:create' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
           Create course
         </a>
       </div>
 
         {% if course_list %}
-            <div class="container">
+            <div class="container" style="margin-top: 50px;">
                {% for course in course_list %}
                   {% if course.writer == user %}
                     <a href="{% url 'courseapp:detail' pk=course.pk %}">
@@ -25,7 +25,7 @@
         {% endif %}
 
     {% elif user.profile.get_personnel_display == '학부생' %}
-      <div style="text-align: center">
+      <div style="margin-top:80px;text-align: center">
         <a href="{% url 'courseapp:signup' %}" class="btn btn-dark rounded-pill mt-3 mb-3 px-3">
           Signup course
         </a>
@@ -33,7 +33,7 @@
 
 
         {% if join_list %}
-            <div class="container">
+            <div class="container" style="margin-top: 50px;">
                {% for join in join_list %}
                     {% if user == join.user %}
                         <a href="{% url 'courseapp:detail' pk=join.course.pk %}">
