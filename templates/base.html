@@ -3,18 +3,22 @@
 
 {% include 'head.html' %}
 
+
 <body style="font-family: 'NanumSquareR';">
 
+<div style="width: 200px;height:100%; position: fixed; left: 0; top:0; background-color:  #7d0019">
     {% include 'header.html' %}
+</div>
 
-    <hr>
-
+<div style="margin-left: 200px;">
     {% block content %}
     {% endblock %}
+</div>
 
-     <hr>
 
+<div style="margin-left: 200px;">
+    <hr>
     {% include 'footer.html' %}
-
+</div>
 </body>
 </html>
