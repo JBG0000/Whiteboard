@@ -20,8 +20,8 @@
     margin-right: 20px;">
   <img src="{{ course.image.url }}" alt="" style="width: 100%;" >
   <div class="card-body">
+     <h7 class="card-text">{{ course.classnumber }}</h7>
     <h5 class="card-title">{{ course.title }}</h5>
     <p class="card-text">{{ course.writer.profile.name | safe }}</p>
-{#    <a href="#" class="btn btn-primary">Go somewhere</a>#}
   </div>
 </div>
