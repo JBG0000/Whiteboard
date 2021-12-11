@@ -20,20 +20,6 @@
         <div class="div-block-8">
             <div class="text-block-18">글쓴이 :{{ target_post.writer.profile.name }}
                 작성일자 : {{ target_post.created_at }}
-                {#            {% if 'korea.ac.kr' in target_post.writer.email %}#}
-                {#                {% if target_post.writer.first_name or target_post_writer.last_name %}#}
-                {#                    {{ target_post.writer.first_name }}{{ target_post.writer.last_name }}#}
-                {#                {% else %}#}
-                {#                    No Name#}
-                {#                {% endif %}#}
-                {#            {% elif target_post.writer.profile %}#}
-                {#                {{ target_post.writer.profile.nickname }}#}
-                {#            {% elif target_post.writer %}#}
-                {#                {{ target_post.writer }}#}
-
-                {#            {% else %}#}
-                {#                알수없음#}
-                {#            {% endif %}#}
             </div>
             <div>
                 {% if target_post.type == 'notice' %}
@@ -54,15 +40,6 @@
 
             <div class="paragraph-70">{{ target_post.content | safe }}</div>
 
-            {#            <!--   댓글 쓰기 -->#}
-            {#            {% include 'commentapp/create.html' with board=target_post %}#}
-            {#            <div class="div-block-9"></div>#}
-            {##}
-            {#            <div class="size3-text">댓글 목록<br></div>#}
-            {#            <!--    댓글 리스트 -->#}
-            {#            {% for comment in comment_list %}#}
-            {#                {% include 'commentapp/detail.html' %}#}
-            {#            {% endfor %}#}
         </div>
     </div>
 

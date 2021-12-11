@@ -42,7 +42,7 @@
                     href={% url 'boardapp:detail' pk=post.pk %}>{{ post.title }}</a></h4>
             <span style="display:inline-block; text-align: center; width: 21%;">{{ post.created_at }}</span>
             <a style="display:inline-block; text-align: center; width: 10%;"
-               href={% url 'accountapp:detail' pk=post.writer.pk %}>{{ post.writer }}</a>
+               href={% url 'accountapp:detail' pk=post.writer.pk %}>{{ post.writer.profile.name }}</a>
             <hr>
         {% endfor %}
         <div style="max-width:500px; text-align: center">

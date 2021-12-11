@@ -16,10 +16,8 @@
                     <a href="{% url 'courseapp:detail' pk=course.pk %}">
                       {% include 'snippets/card.html' with course=course %}
                     </a>
-                     <hr>
               {% endfor %}
             </div>
          {% endif %}
 
-     <script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock %}
